@@ -5,10 +5,13 @@ assignProxy(){
 	do
 		export "$envar=$1"
 	done
-	for envar in (no_proxy NO_PROXY)
-	do
-		export "$envar=$2"
-	done
+	export "no_proxy=$2"
+	export "NO_PROXY=$2"
+	hash git 2> /dev/null 
+	if [ $? -eq 0 ]; then # check if git is present
+		git config --global http.proxy $1
+		git config --global https.proxy $1
+	fi
 	echo "Proxy settings completed"
 }
 
