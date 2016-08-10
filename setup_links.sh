@@ -48,3 +48,11 @@ if [ -f $HOME/.zshrc -o -L $HOME/.zshrc ] ; then
 fi
 echo "Adding symlink to zshrc"
 ln -s `pwd`/.zshrc $HOME/.zshrc
+
+#Setup proxy script
+if [ -f $HOME/set_proxy.sh -o -L $HOME/set_proxy.sh ] ; then
+	echo "Removing old proxy script"
+	rm -rf $HOME/set_proxy.sh
+fi
+echo "Adding symlink to proxy_script"
+ln -s `pwd`/set_proxy.sh $HOME/set_proxy.sh
