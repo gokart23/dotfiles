@@ -56,3 +56,11 @@ if [ -f $HOME/set_proxy.sh -o -L $HOME/set_proxy.sh ] ; then
 fi
 echo "Adding symlink to proxy_script"
 ln -s `pwd`/set_proxy.sh $HOME/set_proxy.sh
+
+#Setup theano with GPU support
+if [ -f $HOME/.theanorc -o -L $HOME/.theanorc ] ; then
+	echo "Removing old theanorc"
+	rm -rf $HOME/.theanorc
+fi
+echo "Adding symlink to theanorc"
+ln -s `pwd`/.theanorc $HOME/.theanorc

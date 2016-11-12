@@ -59,6 +59,7 @@ export PATH="/home/karthik/Programs/anaconda2/bin:/opt/cuda/bin:$PATH"
 # USER DEPENDENT - Set this option only if CUDA is installed on the system
 #			Also, specific location depends on OS (this is the one for Arch)
 export CUDA_ROOT="/opt/cuda"
+export THEANORC="~/.theanorc"
 
 #Run proxy configuration script
 source set_proxy.sh
