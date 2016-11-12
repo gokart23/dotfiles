@@ -10,7 +10,7 @@ assignProxy(){
 	hash git 2> /dev/null 
 	if [ $? -eq 0 ]; then # check if git is present
 		git config --global http.proxy $1
-		git config --global https.proxy $1
+		git config --global https.proxy $3
 	fi
 	echo "Proxy settings completed"
 }
@@ -21,13 +21,22 @@ clrProxy(){
 
 setProxy(){
 	no_proxy="*.iitg.ernet.in, repo.cse.iitg.ernet.in, 202.141.*.*, 172.*.*.*, 192.168.*.*"
-	server="172.16.114.197"
-	port="3128"
-	user="user"
-	pass="hercules"	
+	if [[ $# -ne 0 ]]; then
+		server=$1
+		port=$2
+		user=$3
+		pass=$4
+	else
+		server="172.16.114.197"
+		port="3128"
+		user="user"
+		pass="hercules"	
+	fi
 	#read ‐p "Password: " ‐s pass &&  echo ‐e " "
-	proxy_value="http://$user:$pass@:$server:$port"
+	proxy_value="http://$user:$pass@$server:$port"
+	secure_p_val="https://$user:$pass@$server:$port"
 	no_proxy_value="localhost,127.0.0.1,$no_proxy"
-	assignProxy $proxy_value $no_proxy_value
+	assignProxy $proxy_value $no_proxy_value $secure_p_val
+	echo "Proxy set to $server:$port"
 }
 

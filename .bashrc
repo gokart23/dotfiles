@@ -12,5 +12,5 @@ PS1='[\u@\h \W]\$ '
 export GOPATH="/home/karthik/go"
 export PATH="$PATH:$GOPATH/bin"
 # added by Anaconda2 4.0.0 installer
-export PATH="/home/karthik/Programs/anaconda2/bin:$PATH"
+export PATH="/home/karthik/Programs/anaconda2/bin:/opt/bin/cuda:$PATH"
 

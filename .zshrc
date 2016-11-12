@@ -54,11 +54,15 @@ autoload -U compinit && compinit
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/home/karthik/Programs/anaconda2/bin:$PATH"
+export PATH="/home/karthik/Programs/anaconda2/bin:/opt/cuda/bin:$PATH"
+
+# USER DEPENDENT - Set this option only if CUDA is installed on the system
+#			Also, specific location depends on OS (this is the one for Arch)
+export CUDA_ROOT="/opt/cuda"
 
 #Run proxy configuration script
 source set_proxy.sh
-setProxy
+setProxy 202.141.80.24 3128 k.duddu Na11Mg12Al13
 
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
