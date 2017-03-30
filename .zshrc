@@ -18,7 +18,7 @@ ZSH_THEME="agnoster"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# etensorflowxport UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -54,16 +54,20 @@ autoload -U compinit && compinit
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/home/karthik/Programs/anaconda2/bin:/opt/cuda/bin:$PATH"
+export PATH="/opt/cuda/bin:$PATH:/home/karthik/Programs/anaconda2/bin"
 
 # USER DEPENDENT - Set this option only if CUDA is installed on the system
 #			Also, specific location depends on OS (this is the one for Arch)
 export CUDA_ROOT="/opt/cuda"
-export THEANORC="~/.theanorc"
+export LD_LIBRARY_PATH="/opt/cuda/:$LD_LIBRARY_PATH"
+export PYTHONPATH="$PYTHONPATH:/usr/local/share/opencog/python"
+#export THEANORC="~/.theanorc"
 
 #Run proxy configuration script
 source set_proxy.sh
-setProxy 202.141.80.24 3128 k.duddu Na11Mg12Al13
+setProxy 202.141.80.24 3128 k.duddu 87654321
+
+source /home/karthik/torch/install/bin/torch-activate
 
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh

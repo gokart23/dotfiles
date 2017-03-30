@@ -14,3 +14,6 @@ export PATH="$PATH:$GOPATH/bin"
 # added by Anaconda2 4.0.0 installer
 export PATH="/home/karthik/Programs/anaconda2/bin:/opt/bin/cuda:$PATH"
 
+
+
+. /home/karthik/torch/install/bin/torch-activate

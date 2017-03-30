@@ -27,10 +27,10 @@ setProxy(){
 		user=$3
 		pass=$4
 	else
-		server="172.16.114.197"
+		server="172.16.117.170"
 		port="3128"
 		user="user"
-		pass="hercules"	
+		pass="guardian"	
 	fi
 	#read ‐p "Password: " ‐s pass &&  echo ‐e " "
 	proxy_value="http://$user:$pass@$server:$port"
