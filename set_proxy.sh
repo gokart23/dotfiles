@@ -21,6 +21,8 @@ clrProxy(){
 
 setProxy(){
 	no_proxy="*.iitg.ernet.in, repo.cse.iitg.ernet.in, 202.141.*.*, 172.*.*.*, 192.168.*.*"
+	echo "setProxy: Command for setting proxy environment variables"
+	echo "Usage: setProxy <server> <port> <user> <pwd>"
 	if [[ $# -ne 0 ]]; then
 		server=$1
 		port=$2
