@@ -44,5 +44,7 @@ setProxy(){
 	echo "Proxy set to $server:$port"
 
 	fi
+
+	echo "Established PROXY_MODE $PROXY_MODE"
 }
 

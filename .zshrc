@@ -63,6 +63,11 @@ export LD_LIBRARY_PATH="/opt/cuda/:$LD_LIBRARY_PATH"
 export PYTHONPATH="$PYTHONPATH:/usr/local/share/opencog/python"
 #export THEANORC="~/.theanorc"
 
+#Set proxy mode
+#	As of this version, a PROXY_MODE of 0 sets up a no-proxy environment
+#			    a PROXY_MODE that is non-zero sets up a proxy environment suitatble for IITG
+
+export PROXY_MODE=0
 #Run proxy configuration script
 source set_proxy.sh
 setProxy 202.141.80.24 3128 k.duddu 87654321
