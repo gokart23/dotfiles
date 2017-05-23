@@ -20,6 +20,8 @@ clrProxy(){
 }
 
 setProxy(){
+	if [[ $PROXY_MODE -ne 0 ]]; then
+
 	no_proxy="*.iitg.ernet.in, repo.cse.iitg.ernet.in, 202.141.*.*, 172.*.*.*, 192.168.*.*"
 	echo "setProxy: Command for setting proxy environment variables"
 	echo "Usage: setProxy <server> <port> <user> <pwd>"
@@ -40,5 +42,7 @@ setProxy(){
 	no_proxy_value="localhost,127.0.0.1,$no_proxy"
 	assignProxy $proxy_value $no_proxy_value $secure_p_val
 	echo "Proxy set to $server:$port"
+
+	fi
 }
 
