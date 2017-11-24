@@ -70,10 +70,8 @@ export PYTHONPATH="$PYTHONPATH:/usr/local/share/opencog/python"
 
 export PROXY_MODE=0
 #Run proxy configuration script
-source set_proxy.sh
+source $HOME/set_proxy.sh
 setProxy 202.141.80.24 3128 k.duddu 87654321
-
-source /home/karthik/torch/install/bin/torch-activate
 
 #Run private setup commands
 source ~/.private.rc
