@@ -54,7 +54,8 @@ autoload -U compinit && compinit
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/opt/cuda/bin:$PATH:/home/karthik/Programs/anaconda2/bin"
+export PATH="/opt/cuda/bin:$PATH"
+export ANACONDA_HOME="/home/karthik/Programs/anaconda2/bin"
 
 # USER DEPENDENT - Set this option only if CUDA is installed on the system
 #			Also, specific location depends on OS (this is the one for Arch)
@@ -73,6 +74,9 @@ source set_proxy.sh
 setProxy 202.141.80.24 3128 k.duddu 87654321
 
 source /home/karthik/torch/install/bin/torch-activate
+
+#Run private setup commands
+source ~/.private.rc
 
 # export MANPATH="/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
