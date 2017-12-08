@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Setup xinitrc for X Window system
 if [ -f $HOME/.xinitrc -o -L $HOME/.xinitrc ] ; then
 	echo "Removing old xinitrc"
@@ -63,4 +65,11 @@ if [ -f $HOME/.theanorc -o -L $HOME/.theanorc ] ; then
 	rm -rf $HOME/.theanorc
 fi
 echo "Adding symlink to theanorc"
-ln -s `pwd`/.theanorc $HOME/.theanorc
+
+#Setup tmux conf
+if [ -f $HOME/.tmux.conf -o -L $HOME/.tmux.conf ] ; then
+	echo "Removing old tmux conf"
+	rm -rf $HOME/.tmux.conf
+fi
+echo "Adding symlink to tmux conf"
+ln -s `pwd`/.tmux.conf $HOME/.tmux.conf
