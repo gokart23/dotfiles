@@ -45,6 +45,21 @@ fi
 echo "Adding symlink to zshrc"
 ln -s `pwd`/.zshrc $HOME/.zshrc
 
+#Set up zsh pure theme in the fpath
+PURE_THEME_DIRECTORY=".zsh/pure"
+if [ ! -e "`pwd`/${PURE_THEME_DIRECTORY}/prompt_pure_setup" ]; then
+    ln -s `pwd`/${PURE_THEME_DIRECTORY}/pure.zsh `pwd`/${PURE_THEME_DIRECTORY}/prompt_pure_setup
+    ln -s `pwd`/${PURE_THEME_DIRECTORY}/async.zsh `pwd`/${PURE_THEME_DIRECTORY}/async
+fi
+#Also setup zsh related folder
+if [ -d $HOME/.zsh -o -L $HOME/.zsh ]; then
+    echo "Removing old .zsh directory"
+    rm -rf $HOME/.zsh
+fi
+ln -s `pwd`/.zsh $HOME/.zsh
+fpath=( "$HOME/${PURE_THEME_DIRECTORY}" $fpath )
+
+
 #Setup proxy script
 if [ -f $HOME/set_proxy.sh -o -L $HOME/set_proxy.sh ] ; then
 	echo "Removing old proxy script"

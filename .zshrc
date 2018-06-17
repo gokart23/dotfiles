@@ -1,8 +1,9 @@
 # export ZSH=$HOME/.oh-my-zsh
-if [[ -o interactive && ! -o login && -z "$TMUX" ]]; then
-    tmux a -t workspace || tmux new -s workspace
-fi
+# if [[ -o interactive && ! -o login && -z "$TMUX" ]]; then
+#     tmux a -t workspace || tmux new -s workspace
+# fi
 
+fpath=( "$HOME/.zsh/pure" $fpath )
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -13,7 +14,12 @@ autoload -U compinit && compinit
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Setup conda for usage
-. ~/Programs/miniconda3/etc/profile.d/conda.sh
+CONDA_FILE='~/Programs/miniconda3/etc/profile.d/conda.sh'
+if [ -e "${CONDA_FILE}" ]; then
+    . "${CONDA_FILE}"
+else
+    echo -e "\e[31mWARN: Could not find $CONDA_FILE \e[0m"
+fi
 
 # TODO: Verify authenticity of cuda installation before using
 # export PATH="/opt/cuda/bin:$PATH"
@@ -26,7 +32,9 @@ export PYTHONPATH="$PYTHONPATH:/usr/local/share/opencog/python"
 #export THEANORC="~/.theanorc"
 
 #Run private setup commands
-source ~/.private.rc
+if [ -e ~/.private.rc ]; then
+    source ~/.private.rc
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
 # source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
@@ -70,4 +78,9 @@ cless() {
 }
 
 # This _has_ to be the last line of the conf file
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_SYNTAX_FILE='/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+if [ -e "${ZSH_SYNTAX_FILE}" ]; then
+    source "${ZSH_SYNTAX_FILE}"
+else
+    echo -e "\e[31mWARN: Could not find $ZSH_SYNTAX_FILE \e[0m"
+fi

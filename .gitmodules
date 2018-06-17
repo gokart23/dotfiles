@@ -7,3 +7,9 @@
 [submodule ".vim/bundle/vim-pathogen"]
 	path = .vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
+[submodule "pure"]
+	path = pure
+	url = https://github.com/sindresorhus/pure
+[submodule ".zsh/pure"]
+	path = .zsh/pure
+	url = https://github.com/sindresorhus/pure.git
