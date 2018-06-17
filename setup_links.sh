@@ -30,19 +30,6 @@ fi
 echo "Adding symlink to .vimrc"
 ln -s `pwd`/.vimrc $HOME/.vimrc
 
-#Setup oh-my-zsh
-# 	Download from git if not present as oh-my-zsh is a part of .gitignore of this project
-if [ -f oh-my-zsh ] ; then
-	git clone https://github.com/robbyrussell/oh-my-zsh
-fi
-#	Setup links
-if [ -f $HOME/.oh-my-zsh -o -L $HOME/.oh-my-zsh ] ; then
-	echo "Removing old oh-my-zsh folder"
-	rm -rf $HOME/.oh-my-zsh
-fi
-echo "Adding symlink to oh-my-zsh folder"
-ln -s `pwd`/oh-my-zsh $HOME/.oh-my-zsh
-
 #Setup zsh
 if [ -f $HOME/.zshrc -o -L $HOME/.zshrc ] ; then
 	echo "Removing old zshrc"
@@ -58,13 +45,6 @@ if [ -f $HOME/set_proxy.sh -o -L $HOME/set_proxy.sh ] ; then
 fi
 echo "Adding symlink to proxy_script"
 ln -s `pwd`/set_proxy.sh $HOME/set_proxy.sh
-
-#Setup theano with GPU support
-if [ -f $HOME/.theanorc -o -L $HOME/.theanorc ] ; then
-	echo "Removing old theanorc"
-	rm -rf $HOME/.theanorc
-fi
-echo "Adding symlink to theanorc"
 
 #Setup tmux conf
 if [ -f $HOME/.tmux.conf -o -L $HOME/.tmux.conf ] ; then

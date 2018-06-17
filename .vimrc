@@ -1,4 +1,6 @@
 " Use pathogen to set up plugins
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
 " Currently, the list of plugins that I use are:
 " - NERDTree for directory exploration
 " - TagBar for tag exploration
