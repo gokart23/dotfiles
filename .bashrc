@@ -9,11 +9,8 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # added by karthik - GOPATH setup
-export GOPATH="/home/karthik/go"
+export GOPATH="~/go"
 export PATH="$PATH:$GOPATH/bin"
-# added by Anaconda2 4.0.0 installer
-export PATH="/home/karthik/Programs/anaconda2/bin:/opt/bin/cuda:$PATH"
 
-
-
-. /home/karthik/torch/install/bin/torch-activate
+# added by Miniconda3 installer
+export PATH="~/Programs/miniconda3/bin:$PATH"
