@@ -16,6 +16,13 @@ fi
 echo "Adding symlink to bashrc"
 ln -s `pwd`/.bashrc $HOME/.bashrc
 
+#Setup gitconfig
+if [ -f $HOME/.gitconfig -o -L $HOME/.gitconfig ]; then
+    echo "Removing old .gitconfig"
+    rm -f $HOME/.gitconfig
+fi
+ln -s `pwd`/.gitconfig $HOME/.gitconfig
+
 #Setup vim 
 if [ -f $HOME/.vim -o -L $HOME/.vim ] ; then
 	echo "Removing old vim folder"
