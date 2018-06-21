@@ -1,7 +1,8 @@
-# export ZSH=$HOME/.oh-my-zsh
-# if [[ -o interactive && ! -o login && -z "$TMUX" ]]; then
-#     tmux a -t workspace || tmux new -s workspace
-# fi
+export TMUX_SHELL="`which zsh`"
+
+if [[ -o interactive && ! -o login && -z "$TMUX" ]]; then
+    SHELL=${TMUX_SHELL:-SHELL} tmux a -t workspace || SHELL=${TMUX_SHELL:-SHELL} tmux new -s workspace
+fi
 
 fpath=( "$HOME/.zsh/pure" $fpath )
 autoload -U promptinit; promptinit
@@ -14,7 +15,7 @@ autoload -U compinit && compinit
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Setup conda for usage
-CONDA_FILE='~/Programs/miniconda3/etc/profile.d/conda.sh'
+CONDA_FILE="$HOME/Programs/miniconda3/etc/profile.d/conda.sh"
 if [ -e "${CONDA_FILE}" ]; then
     . "${CONDA_FILE}"
 else
@@ -77,8 +78,13 @@ cless() {
     fi
 }
 
+if [ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    ZSH_SYNTAX_FILE='/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+else
+    ZSH_SYNTAX_FILE='/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+fi
+
 # This _has_ to be the last line of the conf file
-ZSH_SYNTAX_FILE='/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 if [ -e "${ZSH_SYNTAX_FILE}" ]; then
     source "${ZSH_SYNTAX_FILE}"
 else
