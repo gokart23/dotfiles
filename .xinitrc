@@ -65,6 +65,3 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true --expa
 if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &
 fi
-
-# Starting XMonad
-exec xmonad

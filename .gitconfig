@@ -1,5 +1,5 @@
 [user]
-	email = kar.meher95@gmail.com
+	email = karmeher95+github@gmail.com
 	name = Karthik Duddu
 [filter "lfs"]
 	clean = git-lfs clean -- %f

@@ -64,6 +64,7 @@ set -o vi
 alias zconf="vim ~/.zshrc; source ~/.zshrc"
 alias tconf="vim ~/.tmux.conf"
 alias l='ls -Flath --color=auto'
+alias xopen='xdg-open'
 
 # AWS convenience aliases
 alias aws-ips="aws ec2 describe-instances | jq -r '.Reservations | .[].Instances | .[] | .PublicIpAddress'"

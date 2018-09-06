@@ -29,9 +29,11 @@ nmap <S-l> <C-w>l
 let g:elite_mode=1
 
 " Setting up ViM Powerline module
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" 28/Aug - Turning off since powerline modules seem to be broken after Arch
+" upgrade
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
 
 " Always show statusline
 set laststatus=2
@@ -40,7 +42,7 @@ set laststatus=2
 set t_Co=256
 
 "Color scheme changes
-colorscheme koehler
+colorscheme molokai
 "Set autoindent on
 set autoindent
 filetype plugin indent on
@@ -56,6 +58,51 @@ set incsearch
 " Remapping keys for useful plugins
 nmap <C-f> :TagbarToggle<CR>
 nmap <C-n> :NERDTreeToggle<CR>
+
+let g:NERDTreeWinSize=20
+let g:tagbar_width=27
+
+""" GO Configuration Section
+" Vim-Go configuration
+let g:go_disable_autoinstall = 0
+
+" Highlight
+let g:go_highlight_functions = 1  
+let g:go_highlight_methods = 1  
+let g:go_highlight_structs = 1  
+let g:go_highlight_operators = 1  
+let g:go_highlight_build_constraints = 1  
+let g:tagbar_type_go = {  
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+""" END Go configuration section
+
+" Code style - set column width
+set colorcolumn=80
 
 " Functions to change behaviour/remap things
 if get(g:, 'elite_mode')
