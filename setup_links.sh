@@ -94,3 +94,9 @@ if [ -f $HOME/.tmux.conf -o -L $HOME/.tmux.conf ] ; then
 fi
 echo "Adding symlink to tmux conf"
 ln -s `pwd`/.tmux.conf $HOME/.tmux.conf
+
+#Download font packages for arch
+echo "Downloading font packages"
+if sudo pacman -S ttf-dejavu ttf-liberation noto-fonts; then
+    echo "Unable to download appropriate font packages"
+fi
