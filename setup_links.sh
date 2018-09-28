@@ -30,6 +30,19 @@ if [ -f $HOME/.vim -o -L $HOME/.vim ] ; then
 fi
 echo "Adding symlink to .vim folder"
 ln -s `pwd`/.vim $HOME/.vim
+pushd $HOME/.vim
+    git submodule init
+    git pull --recurse-submodules
+    echo "Downloading and installing pathogen"
+    mkdir -p bundle/vim-pathogen/autoload
+    if curl -LSso bundle/vim-pathogen/autoload/pathogen.vim https://tpo.pe/pathogen.vim; then
+        echo "Unable to download pathogen - please install manually"
+    fi
+    echo "Fetching molokai colorscheme"
+    mkdir colors
+    if curl -LSso colors/molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+popd
+
 if [ -f $HOME/.vimrc -o -L $HOME/.vimrc ] ; then
 	echo "Removing old vimrc"
 	rm $HOME/.vimrc
@@ -44,6 +57,12 @@ if [ -f $HOME/.zshrc -o -L $HOME/.zshrc ] ; then
 fi
 echo "Adding symlink to zshrc"
 ln -s `pwd`/.zshrc $HOME/.zshrc
+pushd $HOME/.zshrc
+    git submodule init || true
+    git pull --recurse-submodule
+    ln -s pure.zsh prompt_pure_setup
+    ln -s async.zsh async
+popd
 
 #Set up zsh pure theme in the fpath
 PURE_THEME_DIRECTORY=".zsh/pure"
