@@ -13,14 +13,15 @@ autoload -U compinit && compinit
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Setup conda for usage
-CONDA_FILE="$HOME/Programs/miniconda3/etc/profile.d/conda.sh"
+CONDA_FILE="$HOME/Software/miniconda/installed/etc/profile.d/conda.sh"
 if [ -e "${CONDA_FILE}" ]; then
     . "${CONDA_FILE}"
 else
     echo -e "\e[31mWARN: Could not find $CONDA_FILE \e[0m"
 fi
+# Added by Miniconda3 installer
+export PATH="/home/sduddu/Software/miniconda/installed/bin:$PATH"
 
 # TODO: Verify authenticity of cuda installation before using
 # export PATH="/opt/cuda/bin:$PATH"

@@ -13,4 +13,4 @@ export GOPATH="~/go"
 export PATH="$PATH:$GOPATH/bin"
 
 # added by Miniconda3 installer
-export PATH="~/Programs/miniconda3/bin:$PATH"
+export PATH="/home/sduddu/Software/miniconda/installed/bin:$PATH"

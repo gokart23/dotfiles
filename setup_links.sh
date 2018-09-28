@@ -1,17 +1,20 @@
 #!/bin/bash
 
+declare -a ESSENTIAL_PACKAGES=( "wget" "curl" )
+declare -a FONT_PACKAGES=( "ttf-dejavu" "ttf-liberation" "noto-fonts" )
+
 #Setup xinitrc for X Window system
 if [ -f $HOME/.xinitrc -o -L $HOME/.xinitrc ] ; then
-	echo "Removing old xinitrc"
-	rm $HOME/.xinitrc
+    echo "Removing old xinitrc"
+    rm $HOME/.xinitrc
 fi
 echo "Adding symlink to xinitrc"
 ln -s `pwd`/.xinitrc $HOME/.xinitrc
 
 #Setup bashrc
 if [ -f $HOME/.bashrc -o -L $HOME/.bashrc ] ; then
-	echo "Removing old bashrc"
-	rm $HOME/.bashrc
+    echo "Removing old bashrc"
+    rm $HOME/.bashrc
 fi
 echo "Adding symlink to bashrc"
 ln -s `pwd`/.bashrc $HOME/.bashrc
@@ -25,8 +28,8 @@ ln -s `pwd`/.gitconfig $HOME/.gitconfig
 
 #Setup vim 
 if [ -f $HOME/.vim -o -L $HOME/.vim ] ; then
-	echo "Removing old vim folder"
-	rm -rf $HOME/.vim
+    echo "Removing old vim folder"
+    rm -rf $HOME/.vim
 fi
 echo "Adding symlink to .vim folder"
 ln -s `pwd`/.vim $HOME/.vim
@@ -44,24 +47,29 @@ pushd $HOME/.vim
 popd
 
 if [ -f $HOME/.vimrc -o -L $HOME/.vimrc ] ; then
-	echo "Removing old vimrc"
-	rm $HOME/.vimrc
+    echo "Removing old vimrc"
+    rm $HOME/.vimrc
 fi
 echo "Adding symlink to .vimrc"
 ln -s `pwd`/.vimrc $HOME/.vimrc
 
 #Setup zsh
 if [ -f $HOME/.zshrc -o -L $HOME/.zshrc ] ; then
-	echo "Removing old zshrc"
-	rm -rf $HOME/.zshrc
+    echo "Removing old zshrc"
+    rm -rf $HOME/.zshrc
 fi
 echo "Adding symlink to zshrc"
 ln -s `pwd`/.zshrc $HOME/.zshrc
-pushd $HOME/.zshrc
+#Also setup zsh related folder
+if [ -d $HOME/.zsh -o -L $HOME/.zsh ]; then
+    echo "Removing old .zsh directory"
+    rm -rf $HOME/.zsh
+fi
+ln -s `pwd`/.zsh $HOME/.zsh
+fpath=( "$HOME/${PURE_THEME_DIRECTORY}" $fpath )
+pushd $HOME/.zsh
     git submodule init || true
     git pull --recurse-submodule
-    ln -s pure.zsh prompt_pure_setup
-    ln -s async.zsh async
 popd
 
 #Set up zsh pure theme in the fpath
@@ -70,33 +78,32 @@ if [ ! -e "`pwd`/${PURE_THEME_DIRECTORY}/prompt_pure_setup" ]; then
     ln -s `pwd`/${PURE_THEME_DIRECTORY}/pure.zsh `pwd`/${PURE_THEME_DIRECTORY}/prompt_pure_setup
     ln -s `pwd`/${PURE_THEME_DIRECTORY}/async.zsh `pwd`/${PURE_THEME_DIRECTORY}/async
 fi
-#Also setup zsh related folder
-if [ -d $HOME/.zsh -o -L $HOME/.zsh ]; then
-    echo "Removing old .zsh directory"
-    rm -rf $HOME/.zsh
-fi
-ln -s `pwd`/.zsh $HOME/.zsh
-fpath=( "$HOME/${PURE_THEME_DIRECTORY}" $fpath )
 
 
 #Setup proxy script
 if [ -f $HOME/set_proxy.sh -o -L $HOME/set_proxy.sh ] ; then
-	echo "Removing old proxy script"
-	rm -rf $HOME/set_proxy.sh
+    echo "Removing old proxy script"
+    rm -rf $HOME/set_proxy.sh
 fi
 echo "Adding symlink to proxy_script"
 ln -s `pwd`/set_proxy.sh $HOME/set_proxy.sh
 
 #Setup tmux conf
 if [ -f $HOME/.tmux.conf -o -L $HOME/.tmux.conf ] ; then
-	echo "Removing old tmux conf"
-	rm -rf $HOME/.tmux.conf
+    echo "Removing old tmux conf"
+    rm -rf $HOME/.tmux.conf
 fi
 echo "Adding symlink to tmux conf"
 ln -s `pwd`/.tmux.conf $HOME/.tmux.conf
 
+#Download essential packages
+echo "Setting up essential packages"
+if sudo pacman -S "${ESSENTIAL_PACKAGES[@]}"; then
+    echo "Couldn't successfully install essential packages"s
+fi
+
 #Download font packages for arch
 echo "Downloading font packages"
-if sudo pacman -S ttf-dejavu ttf-liberation noto-fonts; then
+if sudo pacman -S "${FONT_PACKAGES[@]}"; then
     echo "Unable to download appropriate font packages"
 fi
