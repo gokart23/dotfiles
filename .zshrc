@@ -67,6 +67,11 @@ alias tconf="vim ~/.tmux.conf"
 alias l='ls -Flath --color=auto'
 alias xopen='xdg-open'
 
+# MSI GS65 specific alias
+alias keylight='msi-perkeyrgb -mGS65'
+
+alias curgp='export GOPATH=`pwd`'
+
 # AWS convenience aliases
 alias aws-ips="aws ec2 describe-instances | jq -r '.Reservations | .[].Instances | .[] | .PublicIpAddress'"
 
