@@ -9,19 +9,29 @@ autoload -U promptinit; promptinit
 prompt pure
 
 plugins=(zsh-completions)
-autoload -U compinit && compinit
+autoload -U compinit && compinit # for autocompletion
 
 # User configuration
 
-# Setup conda for usage
-CONDA_FILE="$HOME/Software/miniconda/installed/etc/profile.d/conda.sh"
+#Run private setup commands
+if [ -e ~/.private.rc ]; then
+    source ~/.private.rc
+fi
+
+# Setup case-insensitive mid-word auto completion
+# - fallback to case insensitive if no exact match
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Setup conda for usage - might come from .private.rc
 if [ -e "${CONDA_FILE}" ]; then
     . "${CONDA_FILE}"
+    export PATH="${CONDA_BIN}:$PATH"
 else
     echo -e "\e[31mWARN: Could not find $CONDA_FILE \e[0m"
 fi
-# Added by Miniconda3 installer
-export PATH="/home/sduddu/Software/miniconda/installed/bin:$PATH"
+
+# Golang root path - Arch specific
+export GOROOT=/usr/lib/go
 
 # TODO: Verify authenticity of cuda installation before using
 # export PATH="/opt/cuda/bin:$PATH"
