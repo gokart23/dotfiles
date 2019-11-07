@@ -9,14 +9,25 @@ execute pathogen#infect()
 "Set color syntax on always
 syntax on
 
+"Enable smart casing for search, etc.
+set ignorecase
+set smartcase
+
+"Remap ex prefix to semi-colon - this will interfere with next occurrence!
+nnoremap ; :
+vnoremap ; :
+"Remap next-occurrence the other way (ie, to colon) - not an alias loop since
+"we do a noremap
+nnoremap : ;
+
 "Set backspace to normal operation
 set backspace=2
 
 "Always show cursor
 set ruler
 
-"Display line numbering
-set nu
+"Display line numbering, and relative numbering
+set nu rnu
 
 "Display EOL characters
 set list
@@ -25,7 +36,7 @@ set list
 nmap <S-h> <C-w>h
 nmap <S-l> <C-w>l
 
-"Enable l33t mode - remap arrow keys
+"Enable l33t mode - disable arrow keys
 let g:elite_mode=1
 
 " Setting up ViM Powerline module
@@ -106,8 +117,8 @@ set colorcolumn=80
 
 " Functions to change behaviour/remap things
 if get(g:, 'elite_mode')
-    nnoremap <Up>    :resize +2<CR>
-    nnoremap <Down>  :resize -2<CR>
-    nnoremap <Left>  :vertical resize +2<CR>
-    nnoremap <Right> :vertical resize -2<CR>
+    nnoremap <Up>    <Nop>
+    nnoremap <Down>  <Nop>
+    nnoremap <Left>  <Nop>
+    nnoremap <Right> <Nop>
 endif
