@@ -6,6 +6,9 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 " - TagBar for tag exploration
 execute pathogen#infect()
 
+"Enable l33t mode - disable arrow keys
+let g:elite_mode=1
+
 "Set color syntax on always
 syntax on
 
@@ -31,20 +34,19 @@ set nu rnu
 
 "Display EOL characters
 set list
+"but not for Go files, since go uses tabs :(
+autocmd FileType go set nolist
 
 "Remap movement keys for convenience
 nmap <S-h> <C-w>h
 nmap <S-l> <C-w>l
 
-"Enable l33t mode - disable arrow keys
-let g:elite_mode=1
-
-" Setting up ViM Powerline module
-" 28/Aug - Turning off since powerline modules seem to be broken after Arch
-" upgrade
-" python3 from powerline.vim import setup as powerline_setup
-" python3 powerline_setup()
-" python3 del powerline_setup
+"Setup persistent undo - I can't live without this now! :D
+if !isdirectory($HOME."/.vim/undodir")
+    call mkdir($HOME."/.vim/undodir", "", 0700)
+endif
+set undodir=~/.vim/undodir
+set undofile
 
 " Always show statusline
 set laststatus=2
@@ -57,18 +59,25 @@ colorscheme molokai
 "Set autoindent on
 set autoindent
 filetype plugin indent on
+"Add syntax file for Cython
+au BufRead,BufNewFile *.pyx set filetype=cython
 
 "Tab related stuff - convert all tabs to 4-width spaces
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 
 " Display incremental search results
 set incsearch
 
+"Set wildmenu
+set wildmenu
+set wildmode=full
+
 " Remapping keys for useful plugins
-nmap <C-f> :TagbarToggle<CR>
-nmap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :TagbarToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 let g:NERDTreeWinSize=20
 let g:tagbar_width=27
