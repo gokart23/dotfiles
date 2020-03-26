@@ -12,6 +12,10 @@ let g:elite_mode=1
 "Set color syntax on always
 syntax on
 
+"Disable annoying beeping
+set noerrorbells
+set vb t_vb=
+
 "Enable smart casing for search, etc.
 set ignorecase
 set smartcase
