@@ -17,3 +17,5 @@
 	status = auto
 	diff = auto
 	branch = auto
+[diff]
+	tool = vimdiff
